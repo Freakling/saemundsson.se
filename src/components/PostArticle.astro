@@ -1,0 +1,82 @@
+---
+import { categoryName, categoryPath, formatDate, readingMinutes, tagName, tagPath, withBase } from '../lib/site';
+
+interface Props {
+  title: string;
+  date?: Date;
+  modified?: Date;
+  categories?: string[];
+  tags?: string[];
+  /** Shown above the text when the text doesn't already show it. */
+  image?: string;
+  imageAlt?: string;
+  body?: string;
+  draft?: boolean;
+}
+
+const { title, date, modified, categories = [], tags = [], image, imageAlt = '', body = '', draft = false } = Astro.props;
+const day = (d: Date) => d.toISOString().slice(0, 10);
+const showModified = date && modified && day(modified) > day(date);
+const showImage = image && !body.includes(image);
+const shownCategories = categories.filter((c) => c !== 'uncategorized');
+---
+<article class="post">
+  <header class="post-header">
+    {
+      shownCategories.length > 0 && (
+        <p class="kicker">
+          {shownCategories.map((c, i) => (
+            <>
+              {i > 0 && ', '}
+              <a href={withBase(categoryPath(c))} rel="category">
+                {categoryName(c)}
+              </a>
+            </>
+          ))}
+        </p>
+      )
+    }
+    <h1>
+      {title}
+      {draft && <span class="badge">Draft</span>}
+    </h1>
+    <p class="meta">
+      {date && <time datetime={date.toISOString()}>{formatDate(date)}</time>}
+      {
+        showModified && modified && (
+          <>
+            <span aria-hidden="true"> · </span>
+            <span>
+              Updated <time datetime={modified.toISOString()}>{formatDate(modified)}</time>
+            </span>
+          </>
+        )
+      }
+      {date && <span aria-hidden="true"> · </span>}
+      <span>{readingMinutes(body)} min read</span>
+    </p>
+    {
+      tags.length > 0 && (
+        <ul class="tags" aria-label="Tags">
+          {tags.map((t) => (
+            <li>
+              <a href={withBase(tagPath(t))} rel="tag">
+                {tagName(t)}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </header>
+  {
+    showImage && image && (
+      <figure class="featured">
+        <img src={/^https?:/.test(image) ? image : withBase(image)} alt={imageAlt} decoding="async" />
+      </figure>
+    )
+  }
+  <div class="prose">
+    <slot />
+  </div>
+</article>

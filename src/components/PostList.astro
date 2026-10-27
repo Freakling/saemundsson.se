@@ -1,0 +1,47 @@
+---
+import { formatDate, metaDescription, readingMinutes, tagName, withBase, type Draft, type Post } from '../lib/site';
+
+interface Props {
+  posts: Post[];
+  /** Drafts shown above the posts on the dev server. */
+  drafts?: { draft: Draft; path: string }[];
+}
+
+const { posts, drafts = [] } = Astro.props;
+---
+<ol class="post-list" reversed>
+  {
+    drafts.map(({ draft, path }) => (
+      <li class="post-card">
+        <p class="meta">
+          <span class="badge">Draft</span>
+        </p>
+        <h2>
+          <a href={withBase(path)}>{draft.data.title}</a>
+        </h2>
+        {draft.data.description && <p class="excerpt">{metaDescription(draft.data.description, 220)}</p>}
+      </li>
+    ))
+  }
+  {
+    posts.map((post) => (
+      <li class="post-card">
+        <p class="meta">
+          <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+          <span aria-hidden="true"> · </span>
+          <span>{readingMinutes(post.body)} min read</span>
+          {post.data.tags.length > 0 && (
+            <>
+              <span aria-hidden="true"> · </span>
+              <span>{post.data.tags.slice(0, 3).map(tagName).join(', ')}</span>
+            </>
+          )}
+        </p>
+        <h2>
+          <a href={withBase(post.data.permalink)}>{post.data.title}</a>
+        </h2>
+        {post.data.description && <p class="excerpt">{metaDescription(post.data.description, 220)}</p>}
+      </li>
+    ))
+  }
+</ol>

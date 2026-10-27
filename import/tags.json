@@ -1,0 +1,322 @@
+[
+  {
+    "id": 5,
+    "name": "3dprinter",
+    "slug": "3dprinter",
+    "description": "",
+    "count": 5,
+    "link": "https://saemundsson.se/tag/3dprinter/"
+  },
+  {
+    "id": 43,
+    "name": "ADR",
+    "slug": "adr",
+    "description": "",
+    "count": 1,
+    "link": "https://saemundsson.se/tag/adr/"
+  },
+  {
+    "id": 8,
+    "name": "AGENTS.md",
+    "slug": "agents-md",
+    "description": "",
+    "count": 3,
+    "link": "https://saemundsson.se/tag/agents-md/"
+  },
+  {
+    "id": 10,
+    "name": "AI coding agents",
+    "slug": "ai-coding-agents",
+    "description": "",
+    "count": 6,
+    "link": "https://saemundsson.se/tag/ai-coding-agents/"
+  },
+  {
+    "id": 16,
+    "name": "Automation",
+    "slug": "automation",
+    "description": "",
+    "count": 1,
+    "link": "https://saemundsson.se/tag/automation/"
+  },
+  {
+    "id": 9,
+    "name": "Azure",
+    "slug": "azure",
+    "description": "",
+    "count": 5,
+    "link": "https://saemundsson.se/tag/azure/"
+  },
+  {
+    "id": 39,
+    "name": "Azure Functions",
+    "slug": "azure-functions",
+    "description": "",
+    "count": 1,
+    "link": "https://saemundsson.se/tag/azure-functions/"
+  },
+  {
+    "id": 31,
+    "name": "Azure Local",
+    "slug": "azure-local",
+    "description": "",
+    "count": 1,
+    "link": "https://saemundsson.se/tag/azure-local/"
+  },
+  {
+    "id": 20,
+    "name": "Azure Policy",
+    "slug": "azure-policy",
+    "description": "",
+    "count": 1,
+    "link": "https://saemundsson.se/tag/azure-policy/"
+  },
+  {
+    "id": 7,
+    "name": "Claude Code",
+    "slug": "claude-code",
+    "description": "",
+    "count": 5,
+    "link": "https://saemundsson.se/tag/claude-code/"
+  },
+  {
+    "id": 26,
+    "name": "Cloud Governance",
+    "slug": "cloud-governance",
+    "description": "",
+    "count": 3,
+    "link": "https://saemundsson.se/tag/cloud-governance/"
+  },
+  {
+    "id": 17,
+    "name": "Continuous Improvement",
+    "slug": "continuous-improvement",
+    "description": "",
+    "count": 1,
+    "link": "https://saemundsson.se/tag/continuous-improvement/"
+  },
+  {
+    "id": 27,
+    "name": "Data Sovereignty",
+    "slug": "data-sovereignty",
+    "description": "",
+    "count": 1,
+    "link": "https://saemundsson.se/tag/data-sovereignty/"
+  },
+  {
+    "id": 45,
+    "name": "developer productivity",
+    "slug": "developer-productivity",
+    "description": "",
+    "count": 1,
+    "link": "https://saemundsson.se/tag/developer-productivity/"
+  },
+  {
+    "id": 13,
+    "name": "developer workflow",
+    "slug": "developer-workflow",
+    "description": "",
+    "count": 4,
+    "link": "https://saemundsson.se/tag/developer-workflow/"
+  },
+  {
+    "id": 14,
+    "name": "DevOps",
+    "slug": "devops",
+    "description": "",
+    "count": 1,
+    "link": "https://saemundsson.se/tag/devops/"
+  },
+  {
+    "id": 36,
+    "name": "Director-Driven Development",
+    "slug": "director-driven-development",
+    "description": "",
+    "count": 5,
+    "link": "https://saemundsson.se/tag/director-driven-development/"
+  },
+  {
+    "id": 33,
+    "name": "Disconnected Operations",
+    "slug": "disconnected-operations",
+    "description": "",
+    "count": 1,
+    "link": "https://saemundsson.se/tag/disconnected-operations/"
+  },
+  {
+    "id": 34,
+    "name": "DORA",
+    "slug": "dora",
+    "description": "",
+    "count": 1,
+    "link": "https://saemundsson.se/tag/dora/"
+  },
+  {
+    "id": 23,
+    "name": "Encryption",
+    "slug": "encryption",
+    "description": "",
+    "count": 1,
+    "link": "https://saemundsson.se/tag/encryption/"
+  },
+  {
+    "id": 18,
+    "name": "Engineering",
+    "slug": "engineering",
+    "description": "",
+    "count": 1,
+    "link": "https://saemundsson.se/tag/engineering/"
+  },
+  {
+    "id": 22,
+    "name": "Entra ID",
+    "slug": "entra-id",
+    "description": "",
+    "count": 3,
+    "link": "https://saemundsson.se/tag/entra-id/"
+  },
+  {
+    "id": 28,
+    "name": "EU",
+    "slug": "eu",
+    "description": "",
+    "count": 1,
+    "link": "https://saemundsson.se/tag/eu/"
+  },
+  {
+    "id": 32,
+    "name": "Foundry Local",
+    "slug": "foundry-local",
+    "description": "",
+    "count": 1,
+    "link": "https://saemundsson.se/tag/foundry-local/"
+  },
+  {
+    "id": 41,
+    "name": "GDPR",
+    "slug": "gdpr",
+    "description": "",
+    "count": 1,
+    "link": "https://saemundsson.se/tag/gdpr/"
+  },
+  {
+    "id": 12,
+    "name": "Godot",
+    "slug": "godot",
+    "description": "",
+    "count": 2,
+    "link": "https://saemundsson.se/tag/godot/"
+  },
+  {
+    "id": 40,
+    "name": "ISO 27001",
+    "slug": "iso-27001",
+    "description": "",
+    "count": 1,
+    "link": "https://saemundsson.se/tag/iso-27001/"
+  },
+  {
+    "id": 38,
+    "name": "multi-tenancy",
+    "slug": "multi-tenancy",
+    "description": "",
+    "count": 2,
+    "link": "https://saemundsson.se/tag/multi-tenancy/"
+  },
+  {
+    "id": 30,
+    "name": "NIS2",
+    "slug": "nis2",
+    "description": "",
+    "count": 1,
+    "link": "https://saemundsson.se/tag/nis2/"
+  },
+  {
+    "id": 19,
+    "name": "PIM",
+    "slug": "pim",
+    "description": "",
+    "count": 1,
+    "link": "https://saemundsson.se/tag/pim/"
+  },
+  {
+    "id": 46,
+    "name": "PKSEI",
+    "slug": "pksei",
+    "description": "",
+    "count": 1,
+    "link": "https://saemundsson.se/tag/pksei/"
+  },
+  {
+    "id": 25,
+    "name": "Public Cloud",
+    "slug": "public-cloud",
+    "description": "",
+    "count": 1,
+    "link": "https://saemundsson.se/tag/public-cloud/"
+  },
+  {
+    "id": 37,
+    "name": "SaaSAllTheThings",
+    "slug": "saasallthethings",
+    "description": "",
+    "count": 3,
+    "link": "https://saemundsson.se/tag/saasallthethings/"
+  },
+  {
+    "id": 42,
+    "name": "security framework",
+    "slug": "security-framework",
+    "description": "",
+    "count": 2,
+    "link": "https://saemundsson.se/tag/security-framework/"
+  },
+  {
+    "id": 24,
+    "name": "Separation of Duties",
+    "slug": "separation-of-duties",
+    "description": "",
+    "count": 1,
+    "link": "https://saemundsson.se/tag/separation-of-duties/"
+  },
+  {
+    "id": 11,
+    "name": "software architecture",
+    "slug": "software-architecture",
+    "description": "",
+    "count": 4,
+    "link": "https://saemundsson.se/tag/software-architecture/"
+  },
+  {
+    "id": 21,
+    "name": "Sovereign Cloud",
+    "slug": "sovereign-cloud",
+    "description": "",
+    "count": 3,
+    "link": "https://saemundsson.se/tag/sovereign-cloud/"
+  },
+  {
+    "id": 15,
+    "name": "SpaceX",
+    "slug": "spacex",
+    "description": "",
+    "count": 1,
+    "link": "https://saemundsson.se/tag/spacex/"
+  },
+  {
+    "id": 29,
+    "name": "Sweden",
+    "slug": "sweden",
+    "description": "",
+    "count": 1,
+    "link": "https://saemundsson.se/tag/sweden/"
+  },
+  {
+    "id": 44,
+    "name": "token cost",
+    "slug": "token-cost",
+    "description": "",
+    "count": 1,
+    "link": "https://saemundsson.se/tag/token-cost/"
+  }
+]

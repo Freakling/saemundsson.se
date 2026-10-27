@@ -1,0 +1,29 @@
+[
+  {
+    "id": 6,
+    "name": "3d printer",
+    "slug": "3dprinter",
+    "description": "",
+    "count": 5,
+    "parent": 0,
+    "link": "https://saemundsson.se/category/3dprinter/"
+  },
+  {
+    "id": 35,
+    "name": "Director-Driven Development",
+    "slug": "director-driven-development",
+    "description": "",
+    "count": 6,
+    "parent": 0,
+    "link": "https://saemundsson.se/category/director-driven-development/"
+  },
+  {
+    "id": 1,
+    "name": "Uncategorized",
+    "slug": "uncategorized",
+    "description": "",
+    "count": 10,
+    "parent": 0,
+    "link": "https://saemundsson.se/category/uncategorized/"
+  }
+]

@@ -1,0 +1,19 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Archive from '../../components/Archive.astro';
+import taxonomy from '../../data/taxonomy.json';
+import { categoryName, categoryPath, getPosts } from '../../lib/site';
+
+export const getStaticPaths = (async () => {
+  const posts = await getPosts();
+  const slugs = new Set([...Object.keys(taxonomy.categories), ...posts.flatMap((p) => p.data.categories)]);
+  return [...slugs].map((slug) => ({
+    params: { slug },
+    props: { posts: posts.filter((p) => p.data.categories.includes(slug)) },
+  }));
+}) satisfies GetStaticPaths;
+
+const { slug } = Astro.params;
+const { posts } = Astro.props;
+---
+<Archive kind="Category" name={categoryName(slug)} path={categoryPath(slug)} posts={posts} />

@@ -1,0 +1,12 @@
+---
+import Base from '../layouts/Base.astro';
+import PostList from '../components/PostList.astro';
+import { getPosts, withBase } from '../lib/site';
+
+const recent = (await getPosts()).slice(0, 5);
+---
+<Base title="Page not found" description="The page you asked for isn't here." path="/404/" noindex>
+  <h1>Page not found</h1>
+  <p>The page you asked for isn't here. The <a href={withBase('/')}>home page</a> lists every post; here are the newest.</p>
+  <PostList posts={recent} />
+</Base>

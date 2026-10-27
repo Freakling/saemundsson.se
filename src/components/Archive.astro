@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+import PostList from './PostList.astro';
+import type { Post } from '../lib/site';
+
+interface Props {
+  kind: 'Category' | 'Tag';
+  name: string;
+  path: string;
+  posts: Post[];
+}
+
+const { kind, name, path, posts } = Astro.props;
+const count = posts.length === 1 ? '1 post' : `${posts.length} posts`;
+---
+<Base title={`${kind}: ${name}`} description={`${count} in ${kind.toLowerCase()} ${name} on Saemundsson.se.`} path={path}>
+  <h1 class="archive-title"><span class="kind">{kind}</span>{name}</h1>
+  <p class="archive-count">{count}</p>
+  {posts.length ? <PostList posts={posts} /> : <p>No posts here yet.</p>}
+</Base>

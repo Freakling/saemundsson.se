@@ -1,0 +1,86 @@
+---
+// Every post at its WordPress permalink (/YYYY/MM/DD/slug/), and every page at
+// its WordPress path (/about/). The path comes from each entry's `permalink`.
+import type { GetStaticPaths } from 'astro';
+import { render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import PostArticle from '../components/PostArticle.astro';
+import { getPages, getPosts, withBase, type Page, type Post } from '../lib/site';
+
+export const getStaticPaths = (async () => {
+  const posts = await getPosts();
+  const pages = await getPages();
+  const toParam = (permalink: string) => permalink.replace(/^\/|\/$/g, '');
+  return [
+    ...posts.map((post, i) => ({
+      params: { path: toParam(post.data.permalink) },
+      props: { kind: 'post' as const, entry: post, newer: posts[i - 1], older: posts[i + 1] },
+    })),
+    ...pages.map((page) => ({
+      params: { path: toParam(page.data.permalink) },
+      props: { kind: 'page' as const, entry: page },
+    })),
+  ];
+}) satisfies GetStaticPaths;
+
+type Props =
+  | { kind: 'post'; entry: Post; newer?: Post; older?: Post }
+  | { kind: 'page'; entry: Page; newer?: undefined; older?: undefined };
+
+const { kind, entry, newer, older } = Astro.props as Props;
+const { Content } = await render(entry);
+const data = entry.data;
+const redirect = kind === 'page' ? entry.data.redirect : undefined;
+---
+<Base
+  title={data.title}
+  description={data.description}
+  path={data.permalink}
+  image={data.image}
+  imageAlt={data.imageAlt}
+  type={kind === 'post' ? 'article' : 'website'}
+  published={kind === 'post' ? data.date : undefined}
+  modified={kind === 'post' ? data.modified : undefined}
+  noindex={!!redirect}
+  redirect={redirect}
+>
+  {
+    redirect ? (
+      <>
+        <h1>{data.title}</h1>
+        <p>
+          This page has moved to <a href={redirect}>{redirect}</a>.
+        </p>
+      </>
+    ) : (
+      <PostArticle
+        title={data.title}
+        date={kind === 'post' ? data.date : undefined}
+        modified={kind === 'post' ? data.modified : undefined}
+        categories={kind === 'post' ? entry.data.categories : []}
+        tags={kind === 'post' ? entry.data.tags : []}
+        image={data.image}
+        imageAlt={data.imageAlt}
+        body={entry.body}
+      >
+        <Content />
+      </PostArticle>
+    )
+  }
+  {
+    (newer || older) && (
+      <nav class="post-nav" aria-label="More posts">
+        {older && (
+          <a class="prev" href={withBase(older.data.permalink)} rel="prev">
+            <small>Older</small>{older.data.title}
+          </a>
+        )}
+        {newer && (
+          <a class="next" href={withBase(newer.data.permalink)} rel="next">
+            <small>Newer</small>{newer.data.title}
+          </a>
+        )}
+      </nav>
+    )
+  }
+</Base>

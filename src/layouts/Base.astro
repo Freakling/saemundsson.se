@@ -1,0 +1,109 @@
+---
+import '../styles/global.css';
+import {
+  SITE_TITLE,
+  SITE_TAGLINE,
+  SITE_LANG,
+  SITE_AUTHOR,
+  absolute,
+  canonical,
+  getPages,
+  metaDescription,
+  withBase,
+} from '../lib/site';
+
+interface Props {
+  /** The page's own title; the site name is added after it. Omit on the home page. */
+  title?: string;
+  description?: string;
+  /** The root-relative path of this page, as on saemundsson.se ("/2026/10/19/slug/"). */
+  path: string;
+  /** A root-relative or absolute image for link previews. */
+  image?: string;
+  imageAlt?: string;
+  type?: 'website' | 'article';
+  published?: Date;
+  modified?: Date;
+  noindex?: boolean;
+  /** Send the visitor to this URL at once (a page WordPress redirected). */
+  redirect?: string;
+}
+
+const { title, description, path, image, imageAlt, type = 'website', published, modified, noindex = false, redirect } = Astro.props;
+const fullTitle = title ? `${title} | ${SITE_TITLE}` : `${SITE_TITLE} | ${SITE_TAGLINE}`;
+const desc = metaDescription(description || SITE_TAGLINE);
+const canonicalUrl = canonical(path);
+const imageUrl = image ? (/^https?:\/\//.test(image) ? image : absolute(image, Astro.site)) : undefined;
+const feedUrl = withBase('/feed.xml');
+const pages = (await getPages()).filter((p) => p.data.redirect);
+const year = new Date().getFullYear();
+---
+<!doctype html>
+<html lang={SITE_LANG}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={desc} />
+    <link rel="canonical" href={canonicalUrl} />
+    {noindex && <meta name="robots" content="noindex" />}
+    {redirect && <meta http-equiv="refresh" content={`0; url=${redirect}`} />}
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#16181d" media="(prefers-color-scheme: dark)" />
+    <meta name="author" content={SITE_AUTHOR} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
+    <link rel="alternate" type="application/rss+xml" title={`${SITE_TITLE} feed`} href={feedUrl} />
+    <link rel="sitemap" href={withBase('/sitemap-index.xml')} />
+
+    <meta property="og:site_name" content={SITE_TITLE} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={title ?? SITE_TITLE} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:url" content={canonicalUrl} />
+    {imageUrl && <meta property="og:image" content={imageUrl} />}
+    {imageUrl && <meta property="og:image:alt" content={imageAlt || title || SITE_TITLE} />}
+    {published && <meta property="article:published_time" content={published.toISOString()} />}
+    {modified && <meta property="article:modified_time" content={modified.toISOString()} />}
+    <meta name="twitter:card" content={imageUrl ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:title" content={title ?? SITE_TITLE} />
+    <meta name="twitter:description" content={desc} />
+    {imageUrl && <meta name="twitter:image" content={imageUrl} />}
+    {imageUrl && <meta name="twitter:image:alt" content={imageAlt || title || SITE_TITLE} />}
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="brand" href={withBase('/')}>
+          <span class="brand-mark" aria-hidden="true">S</span>
+          <span class="brand-name">{SITE_TITLE}</span>
+        </a>
+        <nav aria-label="Site">
+          <ul>
+            <li><a href={withBase('/')}>Posts</a></li>
+            <li><a href={feedUrl}>RSS</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main id="main" class="wrap">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="wrap">
+        <p class="footer-tagline">{SITE_TITLE}: {SITE_TAGLINE.toLowerCase()}.</p>
+        <nav aria-label="Elsewhere">
+          <ul>
+            {pages.map((p) => <li><a href={p.data.redirect} rel="me">{p.data.title}</a></li>)}
+            <li><a href={feedUrl}>RSS feed</a></li>
+          </ul>
+        </nav>
+        <p>&copy; {year} {SITE_AUTHOR}</p>
+      </div>
+    </footer>
+  </body>
+</html>

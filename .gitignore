@@ -1,0 +1,17 @@
+# Dependencies and build output
+node_modules/
+dist/
+.astro/
+
+# Local drafts: previewed by `npm run dev`, published with `npm run promote`
+/drafts/
+
+# Editors and OS
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.log
+.env
+.env.*

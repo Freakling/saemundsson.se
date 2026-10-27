@@ -1,0 +1,30 @@
+---
+// Draft previews, on the dev server only: a build gets no drafts (src/content.config.ts).
+import type { GetStaticPaths } from 'astro';
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PostArticle from '../../components/PostArticle.astro';
+import { draftPath, getDrafts, type Draft } from '../../lib/site';
+
+export const getStaticPaths = (async () => {
+  const drafts = await getDrafts();
+  return drafts.map((draft) => ({ params: { id: draft.id }, props: { draft } }));
+}) satisfies GetStaticPaths;
+
+const { draft } = Astro.props as { draft: Draft };
+const { Content } = await render(draft);
+---
+<Base title={`Draft: ${draft.data.title}`} description={draft.data.description} path={draftPath(draft.id)} noindex>
+  <p class="notice">Draft preview from <code>drafts/{draft.id}.md</code>. It isn't published; <code>npm run promote</code> makes it a post.</p>
+  <PostArticle
+    title={draft.data.title}
+    categories={draft.data.categories}
+    tags={draft.data.tags}
+    image={draft.data.image && /^(?:\/|https?:)/.test(draft.data.image) ? draft.data.image : undefined}
+    imageAlt={draft.data.imageAlt}
+    body={draft.body}
+    draft
+  >
+    <Content />
+  </PostArticle>
+</Base>

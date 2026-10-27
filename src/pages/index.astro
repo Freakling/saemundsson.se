@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import PostList from '../components/PostList.astro';
+import { SITE_AUTHOR, SITE_TAGLINE, draftPath, getDrafts, getPages, getPosts, withBase } from '../lib/site';
+
+const posts = await getPosts();
+const drafts = (await getDrafts()).map((draft) => ({ draft, path: draftPath(draft.id) }));
+
+// WordPress short links: /?p=<post id> and /?page_id=<page id> go to their path.
+const shortLinks: Record<string, string> = {};
+for (const p of posts) if (p.data.wpId) shortLinks[`p=${p.data.wpId}`] = withBase(p.data.permalink);
+for (const p of await getPages()) if (p.data.wpId) shortLinks[`page_id=${p.data.wpId}`] = withBase(p.data.permalink);
+---
+<Base path="/" description={SITE_TAGLINE}>
+  <script is:inline slot="head" define:vars={{ shortLinks }}>
+    var q = new URLSearchParams(location.search);
+    var key = q.has('p') ? 'p=' + q.get('p') : q.has('page_id') ? 'page_id=' + q.get('page_id') : '';
+    if (key && Object.prototype.hasOwnProperty.call(shortLinks, key)) location.replace(shortLinks[key] + location.hash);
+  </script>
+  <section class="intro">
+    <h1>{SITE_TAGLINE}</h1>
+    <p>Notes from {SITE_AUTHOR} on Azure, PowerShell, AI coding agents and whatever else gets built here.</p>
+  </section>
+  <PostList posts={posts} drafts={drafts} />
+</Base>
