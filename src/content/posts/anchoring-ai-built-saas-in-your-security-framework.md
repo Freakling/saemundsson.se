@@ -26,6 +26,7 @@ tags:
 author: Vikingur Saemundsson
 image: /wp-content/uploads/2026/10/Anchoring-post-Figure-2-An-architecture-call@2x.png
 imageAlt: ""
+imageCaption: "<em>Figure 2: An architecture call. Requirements and related ADRs read first, a requirements conflict flagged, options rated on security and compliance impact, and the director deciding.</em>"
 ---
 
 **When an AI agent writes most of your code, your security framework can’t sit in a document the agent never sees. It has to live where the agent works: in the repo, in the decisions it brings to you, and in the checks it can’t get past.**
@@ -87,8 +88,6 @@ When an architecture question comes up, `/architect` prepares the call before it
 6.  **It recommends one,** preferring the option that complies, the one that can be undone, and the stronger security posture when the effort is similar. Then it waits for you.
 
 The same discipline continues into the build. Large items, and any medium item that touches tenant isolation, identity, a contract or a stored schema, get an independent, read-only reviewer in a fresh context before they are committed.
-
-<figure><img src="/wp-content/uploads/2026/10/Anchoring-post-Figure-2-An-architecture-call@2x-1024x576.png" alt="" width="1024" height="576" loading="lazy" decoding="async"><figcaption><em>Figure 2: An architecture call. Requirements and related ADRs read first, a requirements conflict flagged, options rated on security and compliance impact, and the director deciding.</em></figcaption></figure>
 
 ## 4\. Build personal data in from the start
 

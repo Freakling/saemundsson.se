@@ -61,6 +61,7 @@ const redirect = kind === 'page' ? entry.data.redirect : undefined;
         tags={kind === 'post' ? entry.data.tags : []}
         image={data.image}
         imageAlt={data.imageAlt}
+        imageCaption={kind === 'post' ? entry.data.imageCaption : undefined}
         body={entry.body}
         description={kind === 'post' ? data.description : undefined}
       >

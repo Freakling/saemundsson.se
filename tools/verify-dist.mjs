@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // Checks a built dist/ against the WordPress export and the site's rules:
-// - every post and page from import/ exists at its WordPress path;
+// - every post and page from import/ exists at its WordPress path, except the retired ones;
+// - /cv/ redirects to the CV, as it did on WordPress;
 // - the feeds, sitemap, robots.txt, 404 page and every category and tag archive exist;
 // - no HTML links to saemundsson.se/wp-content or saemundsson.se/20.. remain,
 //   except the canonical, Open Graph and Twitter tags;
@@ -18,6 +19,9 @@ const DIST = join(ROOT, 'dist');
 const argBase = process.argv.indexOf('--base');
 const rawBase = argBase > -1 ? process.argv[argBase + 1] : process.env.PAGES_BASE_PATH || '/';
 const base = `/${rawBase.replace(/^\/+|\/+$/g, '')}/`.replace(/^\/\/$/, '/');
+
+// WordPress pages the new site drops on purpose.
+const RETIRED = new Set(['/xenit-se-blog/']);
 
 const errors = [];
 const fail = (msg) => errors.push(msg);
@@ -48,7 +52,8 @@ async function main() {
 
   // 1. Posts and pages at their WordPress paths.
   let found = 0;
-  for (const item of [...posts, ...pages]) {
+  const kept = [...posts, ...pages].filter((item) => !RETIRED.has(new URL(item.link).pathname));
+  for (const item of kept) {
     const path = new URL(item.link).pathname;
     const file = fileFor(base.replace(/\/$/, '') + path);
     if (file && (await exists(file))) {
@@ -58,7 +63,9 @@ async function main() {
       if (canonical !== `https://saemundsson.se${path}`) fail(`${path}: canonical is ${canonical}`);
     } else fail(`missing ${item.type} ${path}`);
   }
-  console.log(`Posts and pages at their WordPress paths: ${found} of ${posts.length + pages.length}`);
+  console.log(`Posts and pages at their WordPress paths: ${found} of ${kept.length} (${RETIRED.size} retired)`);
+  const cv = await readFile(join(DIST, 'cv', 'index.html'), 'utf8').catch(() => '');
+  if (!/http-equiv="refresh" content="0; url=https:\/\/docs\.google\.com\//.test(cv)) fail('/cv/ does not redirect to the CV');
 
   // 2. Feeds, sitemap, robots.txt, 404 and archives.
   const required = ['feed/index.html', 'feed.xml', 'rss.xml', 'sitemap-index.xml', 'robots.txt', '404.html', 'index.html',

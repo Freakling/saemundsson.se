@@ -303,6 +303,37 @@ a:hover {
   padding: 1.75rem 0;
   border-top: 1px solid var(--line);
 }
+/* A post with a featured image: its thumbnail to the right; above the text on phones. */
+.post-card.has-thumb {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 11rem;
+  gap: 1.5rem;
+  align-items: start;
+}
+.post-card .thumb {
+  order: 2;
+  margin-top: 0.3rem;
+}
+.post-card .thumb img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 0.35rem;
+  border: 1px solid var(--line);
+  background: var(--code-bg);
+}
+@media (max-width: 36rem) {
+  .post-card.has-thumb {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+  }
+  .post-card .thumb {
+    order: 0;
+    margin-top: 0;
+  }
+}
 .post-card h2 {
   margin: 0.4rem 0 0.5rem;
   font-family: var(--serif);
@@ -580,7 +611,8 @@ a:hover {
   display: block;
   margin: 0 auto;
 }
-.prose figcaption {
+.prose figcaption,
+.featured figcaption {
   max-width: var(--measure);
   margin: 0.75rem auto 0;
   font-family: var(--sans);

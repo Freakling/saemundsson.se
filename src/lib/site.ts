@@ -19,6 +19,12 @@ export function withBase(path: string): string {
   return `${base}${path}`;
 }
 
+/** The list thumbnail of a featured image, made by tools/thumbs.mjs; none for images outside the uploads. */
+export function thumbFor(image?: string): string | undefined {
+  const uploads = '/wp-content/uploads/';
+  return image?.startsWith(uploads) ? `/thumbs/${image.slice(uploads.length).replace(/\.[a-z]+$/i, '.webp')}` : undefined;
+}
+
 /** The canonical URL of a root-relative path, always on the real domain. */
 export function canonical(path: string): string {
   return new URL(path, CANONICAL_ORIGIN).href;

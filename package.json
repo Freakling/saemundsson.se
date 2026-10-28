@@ -3,7 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "predev": "node tools/thumbs.mjs",
     "dev": "astro dev",
+    "prebuild": "node tools/thumbs.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
@@ -23,6 +25,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
+    "sharp": "^0.35.5",
     "turndown": "^7.2.4",
     "turndown-plugin-gfm": "^1.0.2",
     "typescript": "^6.0.3",

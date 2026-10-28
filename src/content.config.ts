@@ -20,8 +20,11 @@ const posts = defineCollection({
     categories: z.array(z.string()).default([]),
     tags: z.array(z.string()).default([]),
     author: z.string().optional(),
+    /** The featured image: the banner above the post and its thumbnail in the lists. */
     image: z.string().optional(),
     imageAlt: z.string().optional(),
+    /** The banner's caption, as HTML. */
+    imageCaption: z.string().optional(),
   }),
 });
 
@@ -36,6 +39,8 @@ const pages = defineCollection({
     wpId: z.number().int().optional(),
     description: z.string().optional(),
     menuOrder: z.number().int().default(0),
+    /** Linked in the header. A redirect page that only keeps an address working sets this to false. */
+    menu: z.boolean().default(true),
     /** WordPress sent this page elsewhere (a 301); the static page redirects there too. */
     redirect: z.url().optional(),
     image: z.string().optional(),
@@ -54,6 +59,7 @@ const drafts = defineCollection({
     tags: z.array(z.string()).default([]),
     image: z.string().optional(),
     imageAlt: z.string().optional(),
+    imageCaption: z.string().optional(),
   }),
 });
 

@@ -16,7 +16,8 @@ tags:
   - software-architecture
 author: Vikingur Saemundsson
 image: /wp-content/uploads/2026/10/comparison-matrix-scaled.png
-imageAlt: ""
+imageAlt: "What each way of working ships, on nine dimensions. The colours mean enforced by a check or hook, described in docs or process, or not found on the pages read; they are not a ranking, and the rows are DDD's own concepts. From vendor documentation read in October 2026."
+imageCaption: "What each way of working ships, on nine dimensions. The colours mean enforced by a check or hook, described in docs or process, or not found on the pages read; they are not a ranking, and the rows are DDD’s own concepts. From vendor documentation read in October 2026."
 ---
 
 I built Director-Driven Development because the second prompt kept going wrong: the fix after the demo, the feature on top of something that already worked. Since then the tools have moved fast, and I owed myself an honest look at what the alternatives do now, what my way of working shares with them, where it stands alone, and where it claims too much. This post is that look. It comes from reading the vendors’ own documentation and best-practice guides in October 2026, not from benchmarks, so it says what each one ships or prescribes, not how well it works.
@@ -24,8 +25,6 @@ I built Director-Driven Development because the second prompt kept going wrong: 
 The alternatives, in four groups: plain agent use (Claude Code, Cursor, Copilot’s agent mode, Codex, Gemini CLI); spec-driven workflows (Kiro, GitHub’s spec-kit, the BMAD method, and published practitioner methods such as Addy Osmani’s and Harper Reed’s); agent harnesses (Aider, Cline, Roo Code, OpenHands); and autonomous agents (Devin, Codex cloud, Jules, Copilot’s cloud agent).
 
 ## What is common practice now
-
-<figure><img src="/wp-content/uploads/2026/10/comparison-matrix-scaled.png" alt="What each way of working ships, on nine dimensions. The colours mean enforced by a check or hook, described in docs or process, or not found on the pages read; they are not a ranking, and the rows are DDD's own concepts. From vendor documentation read in October 2026." loading="lazy" decoding="async"><figcaption>What each way of working ships, on nine dimensions. The colours mean enforced by a check or hook, described in docs or process, or not found on the pages read; they are not a ranking, and the rows are DDD’s own concepts. From vendor documentation read in October 2026.</figcaption></figure>
 
 Most of the ideas I started from are mainstream in 2026, and that is good news, not bad.
 

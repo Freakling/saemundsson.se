@@ -35,7 +35,7 @@ const desc = metaDescription(description || SITE_TAGLINE);
 const canonicalUrl = canonical(path);
 const imageUrl = image ? (/^https?:\/\//.test(image) ? image : absolute(image, Astro.site)) : undefined;
 const feedUrl = withBase('/feed.xml');
-const pages = (await getPages()).filter((p) => p.data.redirect);
+const pages = (await getPages()).filter((p) => p.data.redirect && p.data.menu);
 const year = new Date().getFullYear();
 ---
 <!doctype html>

@@ -31,8 +31,6 @@ That isn’t a flaw in the model. AI is a non-deterministic tool, and that is al
 
 > A director doesn’t need to act. A director needs to recognize a good take.
 
-<img src="/wp-content/uploads/2026/10/Figure-1-Who-owns-what@2x-1024x576.png" alt="" width="1024" height="576" loading="lazy" decoding="async">
-
 You don’t write the implementation. You decide what gets built, judge the result and own the design. Left alone, an agent makes every prompt work as fast as you ask, and every change looks reasonable on its own. That is exactly how a codebase rots. Someone has to hold the whole picture. That’s the director.
 
 Four roles:

@@ -22,6 +22,7 @@ const { Content } = await render(draft);
     tags={draft.data.tags}
     image={draft.data.image && /^(?:\/|https?:)/.test(draft.data.image) ? draft.data.image : undefined}
     imageAlt={draft.data.imageAlt}
+    imageCaption={draft.data.imageCaption}
     body={draft.body}
     draft
   >

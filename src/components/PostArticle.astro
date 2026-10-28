@@ -7,18 +7,18 @@ interface Props {
   modified?: Date;
   categories?: string[];
   tags?: string[];
-  /** Shown above the text when the text doesn't already show it. */
+  /** The banner above the text, with its caption as HTML. */
   image?: string;
   imageAlt?: string;
+  imageCaption?: string;
   body?: string;
   description?: string;
   draft?: boolean;
 }
 
-const { title, date, modified, categories = [], tags = [], image, imageAlt = '', body = '', description, draft = false } = Astro.props;
+const { title, date, modified, categories = [], tags = [], image, imageAlt = '', imageCaption, body = '', description, draft = false } = Astro.props;
 const day = (d: Date) => d.toISOString().slice(0, 10);
 const showModified = date && modified && day(modified) > day(date);
-const showImage = image && !body.includes(image);
 // No lede when the text itself opens with the same words.
 const norm = (t: string) => t.replace(/[^\p{L}\p{N}]+/gu, ' ').trim().toLowerCase().slice(0, 50);
 const showLede = !!description && norm(body) !== norm(description);
@@ -72,9 +72,10 @@ const shownCategories = categories.filter((c) => c !== 'uncategorized');
     }
   </header>
   {
-    showImage && image && (
+    image && (
       <figure class="featured">
-        <img src={/^https?:/.test(image) ? image : withBase(image)} alt={imageAlt} decoding="async" />
+        <img src={/^https?:/.test(image) ? image : withBase(image)} alt={imageAlt} decoding="async" fetchpriority="high" />
+        {imageCaption && <figcaption set:html={imageCaption} />}
       </figure>
     )
   }

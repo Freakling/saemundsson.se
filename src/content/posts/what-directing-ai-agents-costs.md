@@ -19,7 +19,8 @@ tags:
   - token-cost
 author: Vikingur Saemundsson
 image: /wp-content/uploads/2026/10/spend-per-change-linear-scaled.png
-imageAlt: ""
+imageAlt: "The same seven changes and published figures on a linear scale: the seven changes sit between $0.29 and $7.90 at the left edge while the published figures reach $33, $36, $43 and $89"
+imageCaption: "The same seven changes and published figures on a linear scale: the seven changes sit between $0.29 and $7.90 at the left edge while the published figures reach $33, $36, $43 and $89"
 ---
 
 Everyone building with AI coding agents has an opinion about what it costs. I had one too. So I measured it instead: three projects, every token, priced at the public API rates, over the 24 days since the first commit of the largest one. This post is the result, with the conclusions I think the numbers support and the ones they don’t.
@@ -87,8 +88,6 @@ The published comparison is Jellyfish’s, from 12,000 developers in the first q
 <figure><img src="/wp-content/uploads/2026/10/spend-per-change-log-scaled.png" alt="Approximate spend per change, by size, on a log scale: seven changes from the three projects, 17 to 1,038 lines, costing $0.29 to $7.90, against Jellyfish's $0.28 to $89 per merged pull request, one feature's $3 to $33, one engineer's $43 per pull request and one developer's $36 per commit" loading="lazy" decoding="async"><figcaption>Approximate spend per change, by size, on a log scale: seven changes from the three projects, 17 to 1,038 lines, costing $0.29 to $7.90, against Jellyfish’s $0.28 to $89 per merged pull request, one feature’s $3 to $33, one engineer’s $43 per pull request and one developer’s $36 per commit</figcaption></figure>
 
 The same data on a linear scale, which is how the difference looks when the axis is money rather than ratios:
-
-<figure><img src="/wp-content/uploads/2026/10/spend-per-change-linear-scaled.png" alt="The same seven changes and published figures on a linear scale: the seven changes sit between $0.29 and $7.90 at the left edge while the published figures reach $33, $36, $43 and $89" loading="lazy" decoding="async"><figcaption>The same seven changes and published figures on a linear scale: the seven changes sit between $0.29 and $7.90 at the left edge while the published figures reach $33, $36, $43 and $89</figcaption></figure>
 
 ## What the way of working does to the bill
 

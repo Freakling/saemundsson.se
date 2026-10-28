@@ -23,6 +23,7 @@ tags:
 author: Vikingur Saemundsson
 image: /wp-content/uploads/2026/10/Figure-4-The-layers@2x.png
 imageAlt: ""
+imageCaption: "Figure 4: The layers and their allowed dependencies, from client, host and platform inward to domain and contracts, which depend on nothing."
 ---
 
 **SaaSAllTheThings turns an idea, a proof of concept or an existing app into a multi-tenant B2B SaaS on Azure, with an AI coding agent doing the building and you directing it.** It is free, MIT licensed and runs locally in your app’s own git repository.
@@ -93,8 +94,6 @@ You don’t design the architecture from scratch each time. SaaSAllTheThings shi
 -   **Event-driven:** commands on queues, events on topics (Service Bus), state and its events saved together through an outbox, idempotent consumers, versioned contracts.
 -   **Clients:** a Windows app and a mobile app, separate and thin, depending on the contracts only.
 -   **Cost:** Flex Consumption Functions, serverless Cosmos DB, one Service Bus namespace, log caps and a budget per environment.
-
-<figure><img src="/wp-content/uploads/2026/10/Figure-4-The-layers@2x-1024x576.png" alt="" width="1024" height="576" loading="lazy" decoding="async"><figcaption>Figure 4: The layers and their allowed dependencies, from client, host and platform inward to domain and contracts, which depend on nothing.</figcaption></figure>
 
 When a build can’t comply, it stops and asks. You change the architecture for one app through an architecture session:
 

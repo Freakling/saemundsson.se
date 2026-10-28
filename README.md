@@ -7,7 +7,7 @@ The blog at [saemundsson.se](https://saemundsson.se) ("Azure, tech and other ran
 | Path | Holds |
 |---|---|
 | `src/content/posts/` | One Markdown file per post. `permalink` in the frontmatter is the post's URL |
-| `src/content/pages/` | The WordPress pages. All four redirect to profiles elsewhere, as they did on WordPress |
+| `src/content/pages/` | Redirect pages: LinkedIn, GitHub and Credly in the header, as on WordPress, and `/cv/` (kept out of the header with `menu: false`) to the CV |
 | `src/data/taxonomy.json` | Category and tag names by slug |
 | `public/wp-content/uploads/` | The WordPress uploads, at their old paths, so old image URLs keep working |
 | `public/images/YYYY/MM/` | Images for new posts (`npm run promote` puts them there) |

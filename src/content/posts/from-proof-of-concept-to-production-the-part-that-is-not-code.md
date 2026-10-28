@@ -17,7 +17,8 @@ tags:
   - security-framework
 author: Vikingur Saemundsson
 image: /wp-content/uploads/2026/10/production-envelope-scaled.png
-imageAlt: ""
+imageAlt: "The production envelope against SaaSAllTheThings at its latest release: what the workshops ask, what the reference advises, what the check enforces, and what is not found."
+imageCaption: "The production envelope against SaaSAllTheThings at its latest release: what the workshops ask, what the reference advises, what the check enforces, and what is not found."
 ---
 
 My last post compared Director-Driven Development with other AI coding workflows and ended on a narrow claim: AI tools generate and review code, and my frameworks make the architecture and security requirements part of “done”. Writing it, I kept bumping into a bigger objection, my own: an app is so much more than the app. In an enterprise, a proof of concept becomes production only when the infrastructure, the identities, the monitoring, the backups, the network, the people on call and the evidence for the auditor exist around it. CodeQL finds flaws in code. The door an attacker uses is often somewhere else.
@@ -74,8 +75,6 @@ Every architecture session then reads the compliance folder and the requirements
 Then there is the check. It fails the build on nine rules: layering, domain purity, two tenant-isolation rules, secrets patterns, file and host size, message versioning and cost-driven SKU choice. The only way past a failing rule is an accepted decision record naming the rule and the file, and a proposed decision does not count. That part holds, and I found nothing like it in the other tools.
 
 Now the gaps, area by area against the envelope.
-
-<figure><img src="/wp-content/uploads/2026/10/production-envelope-scaled.png" alt="The production envelope against SaaSAllTheThings at its latest release: what the workshops ask, what the reference advises, what the check enforces, and what is not found." loading="lazy" decoding="async"><figcaption>The production envelope against SaaSAllTheThings at its latest release: what the workshops ask, what the reference advises, what the check enforces, and what is not found.</figcaption></figure>
 
 | Area | What the release has | Form | What is missing |
 | --- | --- | --- | --- |

@@ -1,5 +1,5 @@
 ---
-import { formatDate, metaDescription, readingMinutes, tagName, withBase, type Draft, type Post } from '../lib/site';
+import { formatDate, metaDescription, readingMinutes, tagName, thumbFor, withBase, type Draft, type Post } from '../lib/site';
 
 interface Props {
   posts: Post[];
@@ -24,8 +24,16 @@ const { posts, drafts = [] } = Astro.props;
     ))
   }
   {
-    posts.map((post) => (
-      <li class="post-card">
+    posts.map((post) => {
+      const thumb = thumbFor(post.data.image);
+      return (
+      <li class={thumb ? 'post-card has-thumb' : 'post-card'}>
+        {thumb && (
+          <a class="thumb" href={withBase(post.data.permalink)} tabindex="-1" aria-hidden="true">
+            <img src={withBase(thumb)} alt="" width="480" loading="lazy" decoding="async" />
+          </a>
+        )}
+        <div class="card-text">
         <p class="meta">
           <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
           <span aria-hidden="true"> · </span>
@@ -41,7 +49,9 @@ const { posts, drafts = [] } = Astro.props;
           <a href={withBase(post.data.permalink)}>{post.data.title}</a>
         </h2>
         {post.data.description && <p class="excerpt">{metaDescription(post.data.description, 220)}</p>}
+        </div>
       </li>
-    ))
+      );
+    })
   }
 </ol>
