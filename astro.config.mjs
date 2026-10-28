@@ -45,7 +45,7 @@ export default defineConfig({
     // real nodes, so the base-path plugin reaches its URLs too.
     processor: satteri({ features: { rawHtml: true }, hastPlugins: [baseUrls(base)] }),
     shikiConfig: {
-      themes: { light: 'github-light', dark: 'github-dark' },
+      themes: { light: 'github-light', dark: 'github-dark-dimmed' },
       wrap: false,
     },
   },

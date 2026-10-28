@@ -1,5 +1,5 @@
 ---
-import { categoryName, categoryPath, formatDate, readingMinutes, tagName, tagPath, withBase } from '../lib/site';
+import { categoryName, categoryPath, formatDate, metaDescription, readingMinutes, tagName, tagPath, withBase } from '../lib/site';
 
 interface Props {
   title: string;
@@ -11,28 +11,31 @@ interface Props {
   image?: string;
   imageAlt?: string;
   body?: string;
+  description?: string;
   draft?: boolean;
 }
 
-const { title, date, modified, categories = [], tags = [], image, imageAlt = '', body = '', draft = false } = Astro.props;
+const { title, date, modified, categories = [], tags = [], image, imageAlt = '', body = '', description, draft = false } = Astro.props;
 const day = (d: Date) => d.toISOString().slice(0, 10);
 const showModified = date && modified && day(modified) > day(date);
 const showImage = image && !body.includes(image);
+// No lede when the text itself opens with the same words.
+const norm = (t: string) => t.replace(/[^\p{L}\p{N}]+/gu, ' ').trim().toLowerCase().slice(0, 50);
+const showLede = !!description && norm(body) !== norm(description);
 const shownCategories = categories.filter((c) => c !== 'uncategorized');
 ---
 <article class="post">
   <header class="post-header">
     {
-      shownCategories.length > 0 && (
+      (date || shownCategories.length > 0) && (
         <p class="kicker">
-          {shownCategories.map((c, i) => (
-            <>
-              {i > 0 && ', '}
-              <a href={withBase(categoryPath(c))} rel="category">
-                {categoryName(c)}
-              </a>
-            </>
-          ))}
+          {date && <time datetime={date.toISOString()}>{formatDate(date)}</time>}
+          {date && shownCategories.length > 0 && <span aria-hidden="true"> · </span>}
+          {shownCategories.length > 0 && (
+            <a href={withBase(categoryPath(shownCategories[0]))} rel="category">
+              {categoryName(shownCategories[0])}
+            </a>
+          )}
         </p>
       )
     }
@@ -40,19 +43,18 @@ const shownCategories = categories.filter((c) => c !== 'uncategorized');
       {title}
       {draft && <span class="badge">Draft</span>}
     </h1>
+    {showLede && description && <p class="lede">{metaDescription(description, 300)}</p>}
     <p class="meta">
-      {date && <time datetime={date.toISOString()}>{formatDate(date)}</time>}
       {
         showModified && modified && (
           <>
-            <span aria-hidden="true"> · </span>
             <span>
               Updated <time datetime={modified.toISOString()}>{formatDate(modified)}</time>
             </span>
+            <span aria-hidden="true"> · </span>
           </>
         )
       }
-      {date && <span aria-hidden="true"> · </span>}
       <span>{readingMinutes(body)} min read</span>
     </p>
     {

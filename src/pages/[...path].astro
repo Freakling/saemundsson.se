@@ -62,6 +62,7 @@ const redirect = kind === 'page' ? entry.data.redirect : undefined;
         image={data.image}
         imageAlt={data.imageAlt}
         body={entry.body}
+        description={kind === 'post' ? data.description : undefined}
       >
         <Content />
       </PostArticle>
