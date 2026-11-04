@@ -1,6 +1,6 @@
 /*
  * Saemundsson.se, "Editorial": a calm reading layout for long technical posts.
- * - One centred column of 680px; code, figures and embeds may breakout wider on large screens.
+ * - One centred column of up to 880px; code, figures and embeds may breakout wider on large screens.
  * - System fonts only: Charter-style serif for text and titles, the system sans for
  *   interface, the system monospace for code.
  * - Light and dark themes: [data-theme] (set by the inline script in Base.astro, from
@@ -24,7 +24,7 @@
   --serif: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, Georgia, serif;
   --sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --mono: ui-monospace, 'Cascadia Code', Consolas, monospace;
-  --measure: 680px;
+  --measure: 880px;
   --wide: 60rem;
   --gutter: 1.25rem;
   color-scheme: light;
