@@ -5,7 +5,7 @@ modified: 2026-10-21T08:02:26+01:00
 slug: from-proof-of-concept-to-production-the-part-that-is-not-code
 permalink: /2026/10/21/from-proof-of-concept-to-production-the-part-that-is-not-code/
 wpId: 969
-description: "My last post compared Director-Driven Development with other AI coding workflows and ended on a narrow claim: AI tools generate and review code, and my frameworks make the architecture and security requirements part of “done”. Writing it, I kept bumping into a bigger objection, my own: an app is so much more than the app."
+description: "My last post compared Director-Driven Development with other AI coding workflows and ended on a narrow claim: AI tools generate and review code, and my frameworks bring industry standards as guidance you accept and make the rules they can check part of “done”. Writing it, I kept bumping into a bigger objection, my own: an app is so much more than the app."
 categories:
   - director-driven-development
 tags:
@@ -21,7 +21,7 @@ imageAlt: "The production envelope against SaaSAllTheThings at its latest releas
 imageCaption: "The production envelope against SaaSAllTheThings at its latest release: what the workshops ask, what the reference advises, what the check enforces, and what is not found."
 ---
 
-My last post compared Director-Driven Development with other AI coding workflows and ended on a narrow claim: AI tools generate and review code, and my frameworks make the architecture and security requirements part of “done”. Writing it, I kept bumping into a bigger objection, my own: an app is so much more than the app. In an enterprise, a proof of concept becomes production only when the infrastructure, the identities, the monitoring, the backups, the network, the people on call and the evidence for the auditor exist around it. CodeQL finds flaws in code. The door an attacker uses is often somewhere else.
+My last post compared Director-Driven Development with other AI coding workflows and ended on a narrow claim: AI tools generate and review code, and my frameworks bring industry standards as guidance you accept and make the rules they can check part of “done”. Writing it, I kept bumping into a bigger objection, my own: an app is so much more than the app. In an enterprise, a proof of concept becomes production only when the infrastructure, the identities, the monitoring, the backups, the network, the people on call and the evidence for the auditor exist around it. CodeQL finds flaws in code. The door an attacker uses is often somewhere else.
 
 So this post takes the wider view. What does production readiness mean beyond the code? What do the breach reports say about where things actually fail? What do AI coding tools cover at those layers, and what do enterprises use instead? And what does my SaaS framework, SaaSAllTheThings, actually do when you hand it your security framework, such as the ISF Standard of Good Practice? I read its latest release file by file to answer that last one, and the answer is narrower than what I had been saying. The research notes with every source are linked at the end.
 
